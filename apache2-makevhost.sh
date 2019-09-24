@@ -192,7 +192,7 @@ Document root is "$vhroot"/"$hostname
 sudo nano /etc/hosts
 
 # create DB
-echo "Mysql $mysqlvar DB will be created. Enter root password or press Ctrl+C to skip."
+echo "Mysql $mysqlvar DB will be created. Enter root password or press Enter to skip."
 mysqlvar=$(echo $hostname | cut -d'.' -f 1)
 mysql -uroot -p <<EOF
 CREATE DATABASE $mysqlvar;
