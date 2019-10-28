@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# if argument empty - set current folder
+if [ -z "$1" ]
+  then
+    set -- $(pwd)
+fi
+
 read -r -p "Chose action for $1 in
 [M/m] - chmod for all dirs to 775 and for files 664
 [O/o] - chown $USER:www-data
