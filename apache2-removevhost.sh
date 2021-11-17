@@ -22,13 +22,13 @@ then
     exit;
 fi
 
-a2dissite $hostname".conf"
-/etc/init.d/apache2 reload
-rm /etc/apache2/sites-available/$hostname".conf"
-rm -r /var/www/$hostname
+sudo a2dissite $hostname".conf"
+sudo systemctrl reload apache2.service
+sudo rm /etc/apache2/sites-available/$hostname".conf"
+sudo rm -r /var/www/$hostname
 
 mysqlvar=$(echo $hostname | cut -d'.' -f 1)
 echo "Enter mySQL root password if you want drop database $mysqlvar"
-mysql -uroot -p <<EOF
+sudo mysql -uroot -p <<EOF
 DROP DATABASE $mysqlvar;
 EOF

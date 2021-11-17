@@ -147,9 +147,8 @@ case $input in
 
   </VirtualHost>
 </IfModule>\n" >> $vhroot/$hostname".conf" &&
-    mkcert $hostname "*.$hostname" &&
-    mv $hostname+1.pem $(mkcert -CAROOT)/$hostname+1.pem &&
-    mv $hostname+1-key.pem $(mkcert -CAROOT)/$hostname+1-key.pem
+    mkcert $hostname "*.$hostname" localhost 127.0.0.1 ::1 &&
+    mv $hostname*.pem $(mkcert -CAROOT)/
  ;;
     [nN][oO]|[nN])
  echo "SSL not created"
