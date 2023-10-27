@@ -23,7 +23,7 @@ then
 fi
 
 sudo a2dissite $hostname".conf"
-sudo systemctrl reload apache2.service
+sudo systemctl reload apache2.service
 sudo rm /etc/apache2/sites-available/$hostname".conf"
 sudo rm -r /var/www/$hostname
 

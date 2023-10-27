@@ -135,8 +135,8 @@ case $input in
     CustomLog /var/log/apache2/$hostname"_access_ssl.log" combined
     SSLEngine on
 
-    SSLCertificateFile $(mkcert -CAROOT)/$hostname+1.pem
-    SSLCertificateKeyFile $(mkcert -CAROOT)/$hostname+1-key.pem
+    SSLCertificateFile $(mkcert -CAROOT)/$hostname+4.pem
+    SSLCertificateKeyFile $(mkcert -CAROOT)/$hostname+4-key.pem
 
     <FilesMatch \"\.(cgi|shtml|phtml|php)$\">
         SSLOptions +StdEnvVars
@@ -148,7 +148,8 @@ case $input in
   </VirtualHost>
 </IfModule>\n" >> $vhroot/$hostname".conf" &&
     mkcert $hostname "*.$hostname" localhost 127.0.0.1 ::1 &&
-    mv $hostname*.pem $(mkcert -CAROOT)/
+    mv $hostname+4.pem $(mkcert -CAROOT)/$hostname+4.pem &&
+    mv $hostname+4-key.pem $(mkcert -CAROOT)/$hostname+4-key.pem
  ;;
     [nN][oO]|[nN])
  echo "SSL not created"
