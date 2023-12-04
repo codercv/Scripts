@@ -21,22 +21,43 @@ apt install php8.1 php8.1-fpm php8.1-cli php8.1-mysql php8.1-opcache php8.1-mbst
 
 # Install Composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 php -r "unlink('composer-setup.php');"
 
-# Install Elasticsearch 7.9
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
-apt update
-apt install elasticsearch -y
+# Install Elasticsearch 7
+sudo wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic-archive-keyring.gpg
+sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
+sudo apt update
+sudo apt install elasticsearch -y
 
-# Install MariaDB 10.6
+# remove Elasticsearch 7
+# apt purge elasticsearch -y
+# sudo rm /etc/apt/sources.list.d/elastic-7.x.list
+
+# Install Elasticsearch 8
+# sudo apt install curl wget apt-transport-https default-jdk gnupg -y
+# wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+# echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+# sudo apt update
+# sudo apt install elasticsearch -y
+# sudo systemctl enable elasticsearch.service --now
+# cd /usr/share/elasticsearch/bin
+# sudo ./elasticsearch-setup-passwords interactive
+# sudo systemctl daemon-reload
+# curl -uelastic -X GET 'http://localhost:9200'
+
+# remove Elasticsearch 7
+# apt purge elasticsearch -y
+# sudo rm /etc/apt/sources.list.d/elastic-8.x.list
+
+
+# Install MariaDB
 apt install mariadb-server -y
 
-# Install Redis 7.0
+# Install Redis
 apt install redis-server -y
 
-# Install RabbitMQ 3.11
+# Install RabbitMQ
 apt install rabbitmq-server -y
 
 # Enable and start services

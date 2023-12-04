@@ -12,9 +12,9 @@ function switch_php() {
 
 function switch_composer() {
   if [ "$1" == "1" ]; then
-    composer self-update --1
+    sudo composer self-update --1
   elif [ "$1" == "2" ]; then
-    composer self-update --2
+    sudo composer self-update --2
   else
     echo "Invalid Composer version. Supported versions: 1, 2"
   fi
