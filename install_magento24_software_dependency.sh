@@ -46,7 +46,7 @@ sudo apt install elasticsearch -y
 # sudo systemctl daemon-reload
 # curl -uelastic -X GET 'http://localhost:9200'
 
-# remove Elasticsearch 7
+# remove Elasticsearch 8
 # apt purge elasticsearch -y
 # sudo rm /etc/apt/sources.list.d/elastic-8.x.list
 
