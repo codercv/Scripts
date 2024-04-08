@@ -78,5 +78,19 @@ systemctl start mysql
 systemctl start redis-server
 systemctl start rabbitmq-server
 
-# Output status
-echo "Nginx, PHP, Composer, Elasticsearch, MariaDB, Redis, and RabbitMQ installed and started."
+# Define a list of services you want to check
+services=("nginx" "php8.1-fpm" "elasticsearch" "mysql" "redis-server" "rabbitmq-server")
+
+# Loop through each service and check its status
+for service in "${services[@]}"; do
+    # Start the service
+    systemctl start "$service"
+    
+    # Check if the service is active
+    if systemctl is-active --quiet "$service"; then
+        echo "$service: ok"
+    else
+        echo "$service: NOT WORK!"
+    fi
+done
+
